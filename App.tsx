@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar'
 
 import {
   useFonts,
@@ -28,7 +29,14 @@ export default function App() {
   SplashScreen.hideAsync();
 
   return( 
+    
   <ThemeProvider theme={theme}>
+    <StatusBar
+        backgroundColor="transparent"
+
+        translucent= {true}         
+       
+      />
     <Dashboard />
   </ThemeProvider>
   )
