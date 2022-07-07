@@ -1,11 +1,9 @@
 import React from 'react';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
-
 import { HighlightCard } from '../../components/HighlightCard';
-import { TransactionCard } from '../../components/TransactionCard';
+import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
 
-import { 
-  Container, 
+import {
+  Container,
   Header,
   UserWrapper,
   UserInfo,
@@ -17,87 +15,93 @@ import {
   HighlightCards,
   Transactions,
   Title,
-  TransactionList  
+  TransactionList
 } from './styles'
 
+export interface DataListProps extends TransactionCardProps {
+  id: string;
+}
+
 export function Dashboard() {
-  const data = [
+  const data: DataListProps[] = [
     {
-    title:"Desenvolvimento de site",
-    amount:"R$ 12.000,00",
-    category:{
-      name: 'Vendas',
-      icon: 'dollar-sign'
+      id: '1',
+      type: 'positive',
+      title: "Desenvolvimento de site",
+      amount: "R$ 18.000,00",
+      category: {
+        name: 'Vendas',
+        icon: 'dollar-sign'
+      },
+      date: "7/7/2022"
     },
-    date: "7/7/2022"
-  },
-  {
-    title:"Desenvolvimento de site",
-    amount:"R$ 12.000,00",
-    category:{
-      name: 'Vendas',
-      icon: 'dollar-sign'
+    {
+      id: '2',
+      type: 'negative',
+      title: "Hamburgueria Pizzy",
+      amount: "R$ 72,00",
+      category: {
+        name: 'Alimentação',
+        icon: 'coffee'
+      },
+      date: "1/7/2022"
     },
-    date: "7/7/2022"
-  },
-  {
-    title:"Desenvolvimento de site",
-    amount:"R$ 12.000,00",
-    category:{
-      name: 'Vendas',
-      icon: 'dollar-sign'
-    },
-    date: "7/7/2022"
-  }
-];
+    {
+      id: '3',
+      type: 'negative',
+      title: "Aluguel do apartamento",
+      amount: "R$ 2.200,00",
+      category: {
+        name: 'Casa',
+        icon: 'home'
+      },
+      date: "1/7/2022"
+    }
+  ];
   return (
-    <Container>      
+    <Container>
       <Header>
-        
+
         <UserWrapper>
           <UserInfo>
-            <Photo source={{uri: 'https://avatars.githubusercontent.com/u/103189479?v=4'}}/>
-              <User>
-                <UserGreetings>Olá,</UserGreetings>
-                <UserName>Leandro</UserName>
-              </User>
+            <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/103189479?v=4' }} />
+            <User>
+              <UserGreetings>Olá,</UserGreetings>
+              <UserName>Leandro</UserName>
+            </User>
           </UserInfo>
-          <Icon name="power"/>
+          <Icon name="power" />
         </UserWrapper>
-        
+
       </Header>
 
       <HighlightCards>
-        <HighlightCard 
+        <HighlightCard
           type="up"
-          title="Entradas" 
-          amount="R$ 17.400,00" 
+          title="Entradas"
+          amount="R$ 17.400,00"
           lastTransaction="Última entrada dia 13 de abril"
         />
         <HighlightCard
-          type="down" 
-          title="Saídas" 
-          amount="R$ 1.259,00" 
+          type="down"
+          title="Saídas"
+          amount="R$ 1.259,00"
           lastTransaction="Última saída dia 03 de abril"
         />
         <HighlightCard
-          type="total" 
-          title="Total" 
-          amount="R$ 16.141,00" 
-          lastTransaction="01 à 16 de abril"/>
-      </HighlightCards>   
+          type="total"
+          title="Total"
+          amount="R$ 16.141,00"
+          lastTransaction="01 à 16 de abril" />
+      </HighlightCards>
 
       <Transactions>
         <Title>Listagem</Title>
-        <TransactionList 
+        <TransactionList
           data={data}
-          renderItem={({item}) =>  <TransactionCard data={item}/>}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingBottom: getBottomSpace() 
-          }}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <TransactionCard data={item} />}
         />
-       
       </Transactions>
     </Container>
   )
