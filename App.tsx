@@ -11,7 +11,11 @@ import {
 } from '@expo-google-fonts/poppins';
 
 import theme from './src/global/styles/theme';
-import { Register } from './src/screens/Register';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { AppRoutes } from './src/routes/app.routes';
+
+
 
 
 export default function App() {
@@ -22,23 +26,24 @@ export default function App() {
     Poppins_700Bold
   });
 
-  if(!fontsLoaded){
+  if (!fontsLoaded) {
     return null;
   }
 
   SplashScreen.hideAsync();
 
-  return( 
-    
-  <ThemeProvider theme={theme}>
-    <StatusBar
-        backgroundColor="transparent"
+  return (
 
-        translucent= {true}         
-       
+    <ThemeProvider theme={theme}>
+      
+      <StatusBar
+        backgroundColor="transparent"
+        translucent={true}
       />
-    <Register />
-  </ThemeProvider>
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
+    </ThemeProvider>
   )
 }
 
