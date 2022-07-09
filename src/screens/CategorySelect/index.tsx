@@ -53,14 +53,15 @@ return (
             <Name>{item.name}</Name>
           </Category>
         )}
-        ItemSeparatorComponent={()=> <Separator />}
+         ItemSeparatorComponent={()=> <Separator />}  
       />
+      
       <Footer>
         <Button 
           title="Selecionar"
           onPress={closeSelectCategory}  
         />
-          
+       
       </Footer>
     </Container>
   )
