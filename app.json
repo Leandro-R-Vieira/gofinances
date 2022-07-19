@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "RyoFinances",
-    "slug": "RyoFinances",
-    "schema": "RyoFinances",
+    "slug": "ryofinances",
+    "scheme": "ryofinances",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
