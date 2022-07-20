@@ -31,9 +31,8 @@ export function SignIn() {
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível conectar a conta Google')
-    } finally {
       setIsLoading(false);
-    }
+    }    
   }
 
   return (
@@ -71,8 +70,8 @@ export function SignIn() {
         {isLoading &&
           <ActivityIndicator
             color={theme.colors.shape}
-            style={{ marginTop: 18 }}  
-            />
+            style={{ marginTop: 18 }}
+          />
         }
       </Footer>
     </Container>
