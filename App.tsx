@@ -1,6 +1,7 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import 'intl';
-import 'intl/locale-data/jsonp/pt-BR';
+import AppLoading from 'expo-app-loading';
+//import 'intl';
+//import 'intl/locale-data/jsonp/pt-BR';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as SplashScreen from 'expo-splash-screen';
@@ -17,7 +18,7 @@ import theme from './src/global/styles/theme';
 import { Routes } from './src/routes';
 import { AppRoutes } from './src/routes/app.routes';
 import { SignIn } from './src/screens/SignIn';
-import { AuthProvider } from './src/hooks/auth';
+import { AuthProvider, useAuth } from './src/hooks/auth';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -27,8 +28,10 @@ export default function App() {
     Poppins_700Bold
   });
 
-  if (!fontsLoaded) {
-    return null;
+  const { userStorageLoading } = useAuth();
+
+  if (!fontsLoaded || userStorageLoading) {
+    return <AppLoading/>;
   }
 
   SplashScreen.hideAsync();
